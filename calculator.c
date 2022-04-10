@@ -8,10 +8,10 @@ bool Equal(int a, int b);
 //additional functions
 bool Greater(int a, int b);
 bool Lesser(int a, int b);
-bool Not(int a, int b);
-bool Sign(int a);
-int Plus(int a, int b);
-int Minus(int a, int b);
+bool Sign(int a); //
+int NegtoPos(int a); //change negative to positive
+int Add(int a, int b); 
+int Subtract(int a, int b);
 int Multiply(int a, int b);
 void Devide(int a, int b);
 
@@ -34,22 +34,31 @@ bool Equal(int a, int b){
 //additional functions specific
 bool Greater(int a, int b);
 bool Lesser(int a, int b);
-bool Not(int a, int b);
+
 bool Sign(int a){
     if (Equal(a, 0)) return 1;
-    for (int i = 0;;i = Plusone(i)){
-        if (Equal(i, a)) return 1;
-    }
-    return 0;
-    
+    else if (Greater(a, 0)) return 1;
+    else return 0;
 }
 
-int Plus(int a, int b){
+int NegtoPos(int a){
+    int count = 0;
+    for (count; Equal(Equal(a, 0), 0); count = Plusone(count)){
+        a = Plusone(a);
+    }
+    for (int i = 0; Equal(Equal(i, count), 0); i = Plusone(i)){
+        a = Plusone(a);
+    }
+    return a;
+}
+
+
+int Add(int a, int b){
     int result = 0;
     if (Equal(Sign(a), 1)){
         if (Equal(Sign(b), 1)){    
             for (int i = 0; Equal(Equal(i, a), 0); i = Plusone(i)){
-                result = Plusone(result);
+                result = Plusone(result); 
             }
             for (int j = 0; Equal(Equal(j, b), 0); j = Plusone(j)){
                 result = Plusone(result);
@@ -58,17 +67,30 @@ int Plus(int a, int b){
         else {
             printf("not yet not yet");
         }
+    else if (Equal(Sign(b), 1)) {
+        //not yet
+    }
+    else {
+        //not yet
+    }
     }
     return result;
 }
 
-int Minus(int a, int b);
+int Subtract(int a, int b);
 
 int Multiply(int a, int b){
     int result = 0;
-    for (int i = 0; Equal(Equal(i, a), 0); i = Plusone(i)){
-        for (int j = 0; Equal(Equal(j, b), 0); j = Plusone(j)){
-            result = Plusone(result);
+    if (Equal(Sign(a), 1)){
+        if (Equal(Sign(b), 1)){    
+            for (int i = 0; Equal(Equal(i, a), 0); i = Plusone(i)){
+                for (int j = 0; Equal(Equal(j, b), 0); j = Plusone(j)){
+                    result = Plusone(result);
+                }
+            }
+        }
+        else {
+            printf("not yet not yet");
         }
     }
     return result;
