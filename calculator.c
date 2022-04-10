@@ -6,14 +6,14 @@ int Plusone(int a);
 bool Equal(int a, int b);
 
 //additional functions
-bool Greater(int a, int b);
-bool Lesser(int a, int b);
-bool Sign(int a); //
-int NegtoPos(int a); //change negative to positive
-int Add(int a, int b); 
-int Subtract(int a, int b);
-int Multiply(int a, int b);
-void Devide(int a, int b);
+bool Greater(int a, int b); //고민 중인데 걍 int로 바꿔서 큰 수 return 할까?
+bool Lesser(int a, int b); 
+bool Sign(int a); //get the sign (1: positive or zero, 0: negative)
+int Absolute(int a); //get absolute value
+int Add(int a, int b); //addition
+int Subtract(int a, int b); //subtraction
+int Multiply(int a, int b); //multiplication
+void Devide(int a, int b); //division
 
 //main
 int main(){
@@ -35,20 +35,21 @@ bool Equal(int a, int b){
 bool Greater(int a, int b);
 bool Lesser(int a, int b);
 
-bool Sign(int a){
-    if (Equal(a, 0)) return 1;
-    else if (Greater(a, 0)) return 1;
-    else return 0;
+bool Sign(int a){//get the sign (1: positive or zero, 0: negative)
+    if (Equal(a, Absolute(a))) return 1; //positive or zero
+    else return 0; //negative
 }
 
-int NegtoPos(int a){
+int Absolute(int a){//get absolute value
     int count = 0;
+    int original = a;
     for (count; Equal(Equal(a, 0), 0); count = Plusone(count)){
         a = Plusone(a);
-    }
+        if (Equal(count, a)) return original; //return original if positive
+    } //becomes zero
     for (int i = 0; Equal(Equal(i, count), 0); i = Plusone(i)){
         a = Plusone(a);
-    }
+    } //get absolute value
     return a;
 }
 
