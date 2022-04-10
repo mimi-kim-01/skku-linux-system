@@ -13,10 +13,11 @@ int Absolute(int a); //get absolute value
 int Add(int a, int b); //addition
 int Subtract(int a, int b); //subtraction
 int Multiply(int a, int b); //multiplication
-void Devide(int a, int b); //division
+void Divide(int a, int b); //division
 
 //main
 int main(){
+    //메뉴판에 basic operations랑 추가 기능도 만들기! (제곱이나 절댓값 출력이나 등등)
 
     return 0;
 }
@@ -78,7 +79,7 @@ int Add(int a, int b){
     return result;
 }
 
-int Subtract(int a, int b);
+int Subtract(int a, int b); //둘 중 작은 값부터 큰값 될 때까지 더하면 되나? 웅 그러면 될듯
 
 int Multiply(int a, int b){
     int result = 0;
@@ -97,4 +98,4 @@ int Multiply(int a, int b){
     return result;
 }
 
-void Devide(int a, int b);
+void i(int a, int b);
