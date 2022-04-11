@@ -6,9 +6,9 @@ int Plusone(int a);
 bool Equal(int a, int b);
 
 //additional functions
-bool Greater(int a, int b); //고민 중인데 걍 int로 바꿔서 큰 수 return 할까?
-bool Lesser(int a, int b); 
 bool Sign(int a); //get the sign (1: positive or zero, 0: negative)
+int Greater(int a, int b);//get greater value
+int Lesser(int a, int b);//get lesser value
 int Absolute(int a); //get absolute value
 int Add(int a, int b); //addition
 int Subtract(int a, int b); //subtraction
@@ -18,6 +18,7 @@ void Divide(int a, int b); //division
 //main
 int main(){
     //메뉴판에 basic operations랑 추가 기능도 만들기! (제곱이나 절댓값 출력이나 등등)
+    //여기에 그 sign변수 하나 만들어서 중간중간 넣어두다가 나중에 이게 1이면 -표시 다는 걸로 ㄱㄱ
 
     return 0;
 }
@@ -33,12 +34,23 @@ bool Equal(int a, int b){
 }
 
 //additional functions specific
-bool Greater(int a, int b);
-bool Lesser(int a, int b);
-
 bool Sign(int a){//get the sign (1: positive or zero, 0: negative)
     if (Equal(a, Absolute(a))) return 1; //positive or zero
     else return 0; //negative
+}
+
+int Greater(int a, int b){//get greater value
+    for (int i = 0; Equal(Equal(i, a), 0); i = Plusone(i)){
+                if (Equal(i, b)) return a;
+    }
+    return b;
+}
+
+int Lesser(int a, int b){//get lesser value
+    for (int i = 0; Equal(Equal(i, a), 0); i = Plusone(i)){
+                if (Equal(i, b)) return b;
+    }
+    return a;
 }
 
 int Absolute(int a){//get absolute value
@@ -55,26 +67,22 @@ int Absolute(int a){//get absolute value
 }
 
 
-int Add(int a, int b){
+int Add(int a, int b){//addition
     int result = 0;
-    if (Equal(Sign(a), 1)){
-        if (Equal(Sign(b), 1)){    
-            for (int i = 0; Equal(Equal(i, a), 0); i = Plusone(i)){
-                result = Plusone(result); 
-            }
-            for (int j = 0; Equal(Equal(j, b), 0); j = Plusone(j)){
-                result = Plusone(result);
-            }
+    if (Equal(Sign(a), Sign(b))){//if two numbers have the same sign
+        a = Absolute(a), b = Absolute(b);
+        for (int i = 0; Equal(Equal(i, a), 0); i = Plusone(i)){
+            result = Plusone(result); 
         }
-        else {
-            printf("not yet not yet");
+        for (int j = 0; Equal(Equal(j, b), 0); j = Plusone(j)){
+            result = Plusone(result);
         }
-    else if (Equal(Sign(b), 1)) {
-        //not yet
     }
-    else {
-        //not yet
-    }
+    else { //if two numbers have different signs
+        a = Absolute(a), b = Absolute(b);
+        for (int i = Lesser(a, b); Equal(Equal(i, Greater(a, b)), 0); i = Plusone(i)){
+            result = Plusone(result);
+        }
     }
     return result;
 }
