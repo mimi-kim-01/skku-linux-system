@@ -10,16 +10,19 @@ bool Sign(int a); //get the sign (1: positive or zero, 0: negative)
 int Greater(int a, int b);//get greater value
 int Lesser(int a, int b);//get lesser value
 int Absolute(int a); //get absolute value
-int Add(int a, int b); //addition
-int Subtract(int a, int b); //subtraction
-int Multiply(int a, int b); //multiplication
+void Add(int a, int b); //addition
+void Subtract(int a, int b); //subtraction
+void Multiply(int a, int b); //multiplication
 void Divide(int a, int b); //division
+void Menu();
 
 //main
 int main(){
-    //메뉴판에 basic operations랑 추가 기능도 만들기! (제곱이나 절댓값 출력이나 등등)
-    //여기에 그 sign변수 하나 만들어서 중간중간 넣어두다가 나중에 이게 1이면 -표시 다는 걸로 ㄱㄱ
-
+    char oper; //변수설정 주석달기
+    int a, b;
+    Menu();
+    scanf("%d %d", &a, &b);
+    Add(a, b);
     return 0;
 }
 
@@ -41,14 +44,14 @@ bool Sign(int a){//get the sign (1: positive or zero, 0: negative)
 
 int Greater(int a, int b){//get greater value
     for (int i = 0; Equal(Equal(i, a), 0); i = Plusone(i)){
-                if (Equal(i, b)) return a;
+        if (Equal(i, b)) return a;
     }
     return b;
 }
 
 int Lesser(int a, int b){//get lesser value
     for (int i = 0; Equal(Equal(i, a), 0); i = Plusone(i)){
-                if (Equal(i, b)) return b;
+        if (Equal(i, b)) return b;
     }
     return a;
 }
@@ -67,9 +70,11 @@ int Absolute(int a){//get absolute value
 }
 
 
-int Add(int a, int b){//addition
-    int result = 0;
+void Add(int a, int b){//addition 
+    int result = 0, minus;
     if (Equal(Sign(a), Sign(b))){//if two numbers have the same sign
+        if (Sign(a)) minus = 0; //if positive 'minus' becomes 0
+        else minus = 1; //if negative 'minus' becomes 1
         a = Absolute(a), b = Absolute(b);
         for (int i = 0; Equal(Equal(i, a), 0); i = Plusone(i)){
             result = Plusone(result); 
@@ -78,32 +83,54 @@ int Add(int a, int b){//addition
             result = Plusone(result);
         }
     }
-    else { //if two numbers have different signs
+    else {//if two numbers have different signs
+        if (Equal(Sign(a), Equal(Absolute(a), Greater(Absolute(a), Absolute(b))))) minus = 0; 
+        else minus = 1;
         a = Absolute(a), b = Absolute(b);
         for (int i = Lesser(a, b); Equal(Equal(i, Greater(a, b)), 0); i = Plusone(i)){
             result = Plusone(result);
         }
     }
-    return result;
+    if (minus) printf("-%d", result);
+    else printf("%d", result);
 }
 
-int Subtract(int a, int b); //둘 중 작은 값부터 큰값 될 때까지 더하면 되나? 웅 그러면 될듯
-
-int Multiply(int a, int b){
+void Subtract(int a, int b){//subtraction
     int result = 0;
-    if (Equal(Sign(a), 1)){
-        if (Equal(Sign(b), 1)){    
-            for (int i = 0; Equal(Equal(i, a), 0); i = Plusone(i)){
-                for (int j = 0; Equal(Equal(j, b), 0); j = Plusone(j)){
-                    result = Plusone(result);
-                }
-            }
-        }
-        else {
-            printf("not yet not yet");
+    if (Equal(Sign(a), Sign(b))){//if two numbers have the same sign
+        a = Absolute(a), b = Absolute(b);
+        for (int i = Lesser(a, b); Equal(Equal(i, Greater(a, b)), 0); i = Plusone(i)){
+            result = Plusone(result);
         }
     }
-    return result;
+    else {//if two numbers have different signs
+        a = Absolute(a), b = Absolute(b);
+        for (int i = 0; Equal(Equal(i, a), 0); i = Plusone(i)){
+            result = Plusone(result); 
+        }
+        for (int j = 0; Equal(Equal(j, b), 0); j = Plusone(j)){
+            result = Plusone(result);
+        }
+    }
 }
 
-void i(int a, int b);
+void Multiply(int a, int b){//multiplication
+    int result = 0;
+    a = Absolute(a), b = Absolute(b);
+    for (int i = 0; Equal(Equal(i, a), 0); i = Plusone(i)){
+        for (int j = 0; Equal(Equal(j, b), 0); j = Plusone(j)){
+            result = Plusone(result);
+        }
+    }       
+}
+
+void Divide(int a, int b){//division
+    int result = 0;
+    
+}
+
+void Menu(){
+    printf("=================CALCULATOR=================\n");
+    printf("");
+
+}
