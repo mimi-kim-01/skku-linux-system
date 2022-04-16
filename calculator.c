@@ -62,7 +62,7 @@ int main() {
             printf("[Absolute value of b: %d]\n", Absolute(b));
             break;
         default:
-            printf("ERROR: Wrong operator.");
+            printf("ERROR: Wrong operator.\n");
             break;
         }
     }
