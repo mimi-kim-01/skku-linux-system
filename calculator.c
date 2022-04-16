@@ -270,7 +270,8 @@ void Power(int a, int b) {
     for (int i = 0; Not(Plusone(i), b); i = Plusone(i)) {
         result = Multi(result, a);
     }
-    if (Equal(minus, 0)) {
+    if (Equal(result, 0)) printf("[Result: %d]\n", result);
+    else if (Equal(minus, 0)) {
         if (form) printf("[Result: 1/%d]\n", result);
         else printf("[Result: %d]\n", result);
     }
